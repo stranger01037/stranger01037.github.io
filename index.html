@@ -5,19 +5,22 @@
     <style>
         /* CSS styles */
         .video-player-container {
-            text-align: center;
-            padding: 20px;
-        }
-
-        #videoUrl, #playButton {
-            display: none; /* Hide the input and button */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%); /* Centers the div */
+            width: 90%; /* Width of the container */
+            height: 60vh; /* Height based on the viewport height */
+            z-index: 1000; /* Ensure it's above other content */
         }
 
         #videoPlayer {
-            width: 640px;
-            height: 480px;
-            max-width: 100%; /* Responsive width */
-            margin: auto; /* Center the video player */
+            width: 100%; /* Full width of the container */
+            height: 100%; /* Full height of the container */
+        }
+
+        /* Hide the input and button */
+        #videoUrl, #playButton {
+            display: none;
         }
     </style>
 </head>
@@ -61,7 +64,6 @@
         var fullVideoUrl = getFullVideoUrl();
         if (fullVideoUrl) {
             setVideoSrc(fullVideoUrl);
-            // Remove the following line if you don't want the URL to show in the hidden input field
             document.getElementById('videoUrl').value = fullVideoUrl;
         }
     }
