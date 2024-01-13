@@ -9,13 +9,15 @@
             padding: 20px;
         }
 
-        #videoUrl {
-            width: 300px;
-            padding: 5px;
+        #videoUrl, #playButton {
+            display: none; /* Hide the input and button */
         }
 
         #videoPlayer {
-            margin-top: 10px;
+            width: 640px;
+            height: 480px;
+            max-width: 100%; /* Responsive width */
+            margin: auto; /* Center the video player */
         }
     </style>
 </head>
@@ -23,8 +25,8 @@
 
 <div class="video-player-container">
     <input type="text" id="videoUrl" placeholder="Enter MP4 video URL here">
-    <button onclick="playVideo()">Play Video</button>
-    <video id="videoPlayer" width="640" height="480" controls>
+    <button id="playButton" onclick="playVideo()">Play Video</button>
+    <video id="videoPlayer" controls>
         Your browser does not support the video tag.
     </video>
 </div>
@@ -46,7 +48,6 @@
         }
     }
 
-    // Function to get everything after the first '?' in the URL
     function getFullVideoUrl() {
         var fullUrl = window.location.href;
         var questionMarkIndex = fullUrl.indexOf('=');
@@ -56,18 +57,15 @@
         return '';
     }
 
-    // On page load
     window.onload = function() {
         var fullVideoUrl = getFullVideoUrl();
         if (fullVideoUrl) {
             setVideoSrc(fullVideoUrl);
+            // Remove the following line if you don't want the URL to show in the hidden input field
             document.getElementById('videoUrl').value = fullVideoUrl;
         }
     }
 </script>
-
-
-
 
 </body>
 </html>
